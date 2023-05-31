@@ -32,7 +32,7 @@ public class vTigerTest
 		org.click();
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 		driver.findElement(By.xpath("//button[@id='Accounts_listView_basicAction_LBL_ADD_RECORD']")).click();
-		driver.findElement(By.id("Accounts_editView_fieldName_accountname")).sendKeys("Ajit Enterprises");
+		driver.findElement(By.id("Accounts_editView_fieldName_accountname")).sendKeys("GitHub Ajit Enterprises");
 		driver.findElement(By.id("Accounts_editView_fieldName_website")).sendKeys("www.ajitenterprises.in");
 		driver.findElement(By.id("Accounts_editView_fieldName_phone")).sendKeys("7775902413");
 		driver.findElement(By.id("Accounts_editView_fieldName_bill_city")).sendKeys("ajitg3520@gmail.com");
