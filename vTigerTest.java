@@ -1,0 +1,64 @@
+package vTiger;
+
+import java.io.File;
+import java.time.Duration;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+
+public class vTigerTest 
+{
+
+	public static void main(String[] args) throws InterruptedException 
+	{
+		WebDriver driver =new ChromeDriver();
+		driver.get("https://demo.vtiger.com/vtigercrm/index.php");
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		driver.findElement(By.xpath("//button[text()='Sign in']")).click();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		driver.findElement(By.xpath("/html[1]/body[1]/div[1]/nav[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/span[1]")).click();
+		Actions a=new Actions(driver);
+		Thread.sleep(3000);
+		WebElement Market = driver.findElement(By.xpath("//span[contains(text(),'MARKETING')]"));
+		a.moveToElement(Market).perform();
+		WebElement org = driver.findElement(By.xpath("(//span[@class='module-name textOverflowEllipsis'])[4]"));
+		a.moveToElement(org).perform();
+		org.click();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		driver.findElement(By.xpath("//button[@id='Accounts_listView_basicAction_LBL_ADD_RECORD']")).click();
+		driver.findElement(By.id("Accounts_editView_fieldName_accountname")).sendKeys("Ajit Enterprises");
+		driver.findElement(By.id("Accounts_editView_fieldName_website")).sendKeys("www.ajitenterprises.in");
+		driver.findElement(By.id("Accounts_editView_fieldName_phone")).sendKeys("7775902413");
+		driver.findElement(By.id("Accounts_editView_fieldName_bill_city")).sendKeys("ajitg3520@gmail.com");
+		driver.findElement(By.id("Accounts_editView_fieldName_email2")).sendKeys("cscbohali@gmail.com");
+		driver.findElement(By.id("Accounts_editView_fieldName_ownership")).sendKeys("Partnership");
+		driver.findElement(By.id("Accounts_editView_fieldName_ownership")).sendKeys("20,00,000");
+		driver.findElement(By.name("bill_street")).sendKeys("125,Swapnappurti Apartment,Near Mhatre Bridge,Dattawadi");
+		driver.findElement(By.name("bill_street")).sendKeys(Keys.CONTROL+"A");
+		driver.findElement(By.name("bill_street")).sendKeys(Keys.CONTROL+"C");
+		driver.findElement(By.name("ship_street")).sendKeys(Keys.CONTROL+"V");
+		Thread.sleep(2000);
+
+		driver.findElement(By.id("Accounts_editView_fieldName_bill_city")).sendKeys("Pune");
+		driver.findElement(By.id("Accounts_editView_fieldName_bill_state")).sendKeys("MH");
+		driver.findElement(By.id("Accounts_editView_fieldName_bill_code")).sendKeys("411030");
+		driver.findElement(By.id("Accounts_editView_fieldName_bill_country")).sendKeys("India");
+		driver.findElement(By.xpath("//textarea[@name='description']")).sendKeys("This is one of Best Organization for your Growth");
+		driver.findElement(By.xpath("//button[@type='submit']")).click();
+		
+		Thread.sleep(2000);
+		
+	
+		TakesScreenshot ts=(TakesScreenshot) driver;
+		File temp=ts.getScreenshotAs(OutputType.FILE);
+		File dest=new File("./Vtiger/Organazation.png");
+		temp.renameTo(dest);
+	}
+
+}
